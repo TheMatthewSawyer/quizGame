@@ -62,9 +62,9 @@ $(document).ready(function() {
 });
 
 function startScreen() {
-    $("#topContent").html("<h1>Quiz Game!</h1>");
+    $("#topContent").html("<h1>~Quiz Game~</h1>");
     
-    $("#middleContent").html("<button type='button' class='btn btn-primary' id='viewHighscoresBtn'>View Highscores!</button><button type='button' class='btn btn-success' id='playGameBtn'>Play Game</button>");
+    $("#middleContent").html("<button type='button' class='btn btn-info' id='viewHighscoresBtn'>View Highscores!</button><button type='button' class='btn btn-primary' id='playGameBtn'>Play Game</button>");
     
     $("#viewHighscoresBtn").on("click", function() {
         highscorePage();
@@ -95,6 +95,7 @@ function playGame(theTimer) {
         return;
     }
     
+    answerRandomizer();
     questionDisplay();
     
     $(".userChoice").on("click", function() {
@@ -131,11 +132,11 @@ function gameOver() {
     if(i<0){i=0;}
     $("#timer").text("Time Left: " + i);
     $("#topContent").html("<h1>Game Over!</h1>")
-    var tmp = "<br><h2>Your score: " + i + "</h2><br>"; //only using tmp for readability
+    var tmp = "<br><h2>Your score: " + i + "</h2><br>"; //only using tmp for readability's sake
     tmp += "<label for='usrInput'> Enter a Username to Submit Your Score:</label>";
     tmp += "<input type='text' class='form-control' id='usrInput' maxlength='10' style='margin: 0 auto; margin-bottom: 20px; width:300px;'>";
-    tmp += "<button type='button' class='btn btn-primary' id='submitHighscore'>Submit Score!</button>";
-    tmp += "<button type='button' class='btn btn-success' id='playAgain'>Play Again</button>";
+    tmp += "<button type='button' class='btn btn-info' id='submitHighscore'>Submit Score!</button>";
+    tmp += "<button type='button' class='btn btn-primary' id='playAgain'>Play Again</button>";
     $("#middleContent").html(tmp);
     $("#playAgain").on("click", function() {
         playAgain();
@@ -144,7 +145,7 @@ function gameOver() {
         if($('#usrInput').val() === ""){return;}
         var spaceTest = /\s/g.test($('#usrInput').val());
         if(spaceTest === true) {
-            $("#bottomContent").html("<h1 style='color: red;margin-top: 20px;'>Please do not enter tabs or spaces :)</h1>");
+            $("#bottomContent").html("<h1 style='color: red;margin-top: 20px;'>Please do not enter any spaces :)</h1>");
         }
         else {
             var usrName = $('#usrInput').val();
@@ -176,7 +177,7 @@ function highscorePage(usrName, usrScore) {
     tmp += "</ul>";
     $("#middleContent").html(tmp);
 
-    $("#bottomContent").html("<button type='button' class='btn btn-warning' id='clearHighscores'>Clear</button><button type='button' class='btn btn-success' id='backBtn'>Back</button>");
+    $("#bottomContent").html("<button type='button' class='btn btn-info' id='clearHighscores'>Clear</button><button type='button' class='btn btn-primary' id='backBtn'>Back</button>");
     
     $("#backBtn").on("click", function() {
         playAgain();
@@ -217,7 +218,6 @@ function getLocalStorage() {
 }
 
 function storeScores() {
-    
     var scoresString = JSON.stringify(highScores);
     localStorage.setItem("scores", scoresString);
 }
@@ -226,4 +226,14 @@ function scoreSorter() {
     highScores.sort(function (a, b) {
         return b.Score - a.Score;
     });
+}
+
+function answerRandomizer() {
+    var tmp = theQuestions[questionPointer].options;
+    var tmpLength = tmp.length;
+    for (var i = 0; i < tmpLength - 1; i++) {
+        var tmpNum = Math.floor(Math.random()*tmp.length);
+        tmp.push(theQuestions[questionPointer].options.splice(tmpNum,1)[0]);
+    }
+    theQuestions[questionPointer].options = tmp;
 }
