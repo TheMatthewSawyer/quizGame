@@ -1,0 +1,16 @@
+.main {
+    background-color: aliceblue;
+}
+
+#middleContent {
+    min-height: 225px;
+}
+
+
+#bottomContent {
+    height: 100px;
+}
+
+.btn {
+    margin: 15px 5px 0px;
+}
