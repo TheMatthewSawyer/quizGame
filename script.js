@@ -1,53 +1,63 @@
 var theQuestions = [
     {
-        question:"This is question one?",
+        question:"How many members were there in the Fellowship of the Ring?",
         options: [
-            "1 1",
-            "1 2",
-            "1 3",
-            "1 4",
+            "9",
+            "12",
+            "7",
+            "11",
         ],
-        correctOption: "1 1"
+        correctOption: "9"
     },
     {
-        question:"This is question two?",
+        question:'Who said, "Nine companions. So be it. You shall be the fellowship of the ring,"?',
         options: [
-            "2 1",
-            "2 2",
-            "2 3",
-            "2 4",
+            "Elrond",
+            "Gandalf",
+            "Aragorn",
+            "Gimli",
         ],
-        correctOption: "2 1"
+        correctOption: "Elrond"
     },
     {
-        question:"This is question three?",
+        question:"What does Aragorn name Narsil, the sword that was broken, after it is reforged?",
         options: [
-            "3 1",
-            "3 2",
-            "3 3",
-            "3 4",
+            "Andúril",
+            "Orcrist",
+            "Glamdring",
+            "Herugrim",
         ],
-        correctOption: "3 1"
+        correctOption: "Andúril"
     },
     {
-        question:"This is question four?",
+        question:"At the parting feast, what gift does Galadriel give Gimli?",
         options: [
-            "4 1",
-            "4 2",
-            "4 3",
-            "4 4",
+            "Three strands of hair",
+            "A Galadhrim bow",
+            "The Phial of Galadriel",
+            "A Golden Belt",
         ],
-        correctOption: "4 1"
+        correctOption: "Three strands of hair"
     },
     {
-        question:"This is question five?",
+        question:"What comes next in a Hobbit's meal schedule? Breakfast, Second Breakfast, __________?",
         options: [
-            "5 1",
-            "5 2",
-            "5 3",
-            "5 4",
+            "Elevensies",
+            "Luncheon",
+            "Afternoon Tea",
+            "Supper",
         ],
-        correctOption: "5 1"
+        correctOption: "Elevensies"
+    },
+    {
+        question:"When did The Third Age begin in Middle-earth?",
+        options: [
+            "After the Ring is cut from Sauron's finger",
+            "After Frodo destroys the Ring in Mount Doom",
+            "After Morgoth is defeated by the Valar and some Elves and Men",
+            "After the dawn of time, a period of myth and legend",
+        ],
+        correctOption: "After the Ring is cut from Sauron's finger"
     }
 ];
 
@@ -62,7 +72,7 @@ $(document).ready(function() {
 });
 
 function startScreen() {
-    $("#topContent").html("<h1>~Quiz Game~</h1>");
+    $("#topContent").html("<h1>~LOTR Quiz~</h1>");
     
     $("#middleContent").html("<button type='button' class='btn btn-info' id='viewHighscoresBtn'>View Highscores!</button><button type='button' class='btn btn-primary' id='playGameBtn'>Play Game</button>");
     
@@ -118,7 +128,7 @@ function playGame(theTimer) {
 function questionDisplay() {
 
     var tmp = "";
-    $("#topContent").html("<h1>" + theQuestions[questionPointer].question + "</h1>");
+    $("#topContent").html("<h3>" + theQuestions[questionPointer].question + "</h3>");
 
     for(var x = 0; x < 4; x++) {
         tmp += "<button type='button' class='btn btn-danger userChoice'>" + theQuestions[questionPointer].options[x] + "</button><br>";
@@ -152,6 +162,11 @@ function gameOver() {
             var usrScore = i;
             highscorePage(usrName, usrScore);
         }
+    });
+    $("#usrInput").keypress(function (e) {
+        if(e.which == 13) {
+            $("#submitHighscore").click();
+         }
     });
 }
 
