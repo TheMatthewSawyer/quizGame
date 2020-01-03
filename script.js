@@ -72,7 +72,7 @@ $(document).ready(function() {
 });
 
 function startScreen() {
-    $("#topContent").html("<h1>~LOTR Quiz~</h1>");
+    $("#topContent").html("<h1>Lord of the Rings Quiz</h1>");
     
     $("#middleContent").html("<button type='button' class='btn btn-info' id='viewHighscoresBtn'>View Highscores!</button><button type='button' class='btn btn-primary' id='playGameBtn'>Play Game</button>");
     
