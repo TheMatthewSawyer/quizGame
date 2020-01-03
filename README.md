@@ -1,4 +1,4 @@
-# [Matthews LOTR Quiz Game](https://github.com/TheMatthewSawyer/quizGame)
+# [Matthew's LOTR Quiz Game](https://github.com/TheMatthewSawyer/quizGame)
 ### https://github.com/TheMatthewSawyer/quizGame
 A fun little quiz game with Lord of the Rings questions and a local high-score list.
 
