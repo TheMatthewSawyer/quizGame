@@ -62,7 +62,7 @@ var theQuestions = [
 ];
 
 var questionPointer = 0;
-var i = 75;
+var i = 105;
 var highScores = [];
 
 getLocalStorage();
@@ -212,7 +212,7 @@ function clearScores() {
 
 function playAgain() {
     questionPointer = 0;
-    i = 75;
+    i = 105;
     clearContent();
     startScreen();
 }
